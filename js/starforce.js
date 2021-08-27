@@ -63,12 +63,12 @@ function calculateRates(starcatchArray, safeguardArray, sunnySundayArray) {
     [0.030, 0.000, 0.776],
     [0.020, 0.000, 0.686],
     [0.010, 0.000, 0.594]];
-  starcatchArray.forEach((value, i) => {
+  starcatchArray.forEach((value, star) => {
     if (value) {
-      let old = array[i][0];
-      array[i][0] *= 1.045;
-      array[i][1] = (1.0 - array[i][0]) * (array[i][1] / (1.0 - old));
-      array[i][2] = (1.0 - array[i][0]) * (array[i][2] / (1.0 - old));
+      let old = array[star][0];
+      array[star][0] *= 1.045;
+      array[star][1] = (1.0 - array[star][0]) * (array[star][1] / (1.0 - old));
+      array[star][2] = (1.0 - array[star][0]) * (array[star][2] / (1.0 - old));
     }
   });
   array = array.map(x => [x[0], x[0]+x[1], x[0]+x[1]+x[2]]);
@@ -77,16 +77,11 @@ function calculateRates(starcatchArray, safeguardArray, sunnySundayArray) {
     array[10][0] = 1.0;
     array[15][0] = 1.0;
   }
-  safeguardArray.forEach((value, i) => {
+  safeguardArray.forEach((value, star) => {
     if (value) {
-      array[i][2] = 1.0;
+      array[star][2] = 1.0;
     }
   });
-  if (discountEvent) {
-    array[5][2] = 1.0;
-    array[10][2] = 1.0;
-    array[15][2] = 1.0;
-  }
   return array;
 }
 
