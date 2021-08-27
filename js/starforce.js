@@ -37,7 +37,7 @@ function calculateCost(level, safeguardArray, sunnySundayArray) {
 
 function calculateRates(starcatchArray, safeguardArray, sunnySundayArray) {
   const [passEvent, discountEvent] = sunnySundayArray;
-  array = [
+  rates = [
     [0.950, 0.050, 0.000],
     [0.900, 0.100, 0.000],
     [0.850, 0.150, 0.000],
@@ -65,24 +65,24 @@ function calculateRates(starcatchArray, safeguardArray, sunnySundayArray) {
     [0.010, 0.000, 0.594]];
   starcatchArray.forEach((value, star) => {
     if (value) {
-      let old = array[star][0];
-      array[star][0] *= 1.045;
-      array[star][1] = (1.0 - array[star][0]) * (array[star][1] / (1.0 - old));
-      array[star][2] = (1.0 - array[star][0]) * (array[star][2] / (1.0 - old));
+      let old = rates[star][0];
+      rates[star][0] *= 1.045;
+      rates[star][1] = (1.0 - rates[star][0]) * (rates[star][1] / (1.0 - old));
+      rates[star][2] = (1.0 - rates[star][0]) * (rates[star][2] / (1.0 - old));
     }
   });
-  array = array.map(x => [x[0], x[0]+x[1], x[0]+x[1]+x[2]]);
+  rates = rates.map(x => [x[0], x[0]+x[1], x[0]+x[1]+x[2]]);
   if (passEvent) {
-    array[5][0] = 1.0;
-    array[10][0] = 1.0;
-    array[15][0] = 1.0;
+    rates[5][0] = 1.0;
+    rates[10][0] = 1.0;
+    rates[15][0] = 1.0;
   }
   safeguardArray.forEach((value, star) => {
     if (value) {
-      array[star][2] = 1.0;
+      rates[star][2] = 1.0;
     }
   });
-  return array;
+  return rates;
 }
 
 function run(start, goal, baseCost, adjustedCost, rates) {
