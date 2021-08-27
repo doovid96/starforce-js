@@ -1,0 +1,26 @@
+.heading {
+  width: 50%;
+  min-width: 960px;
+  margin: auto;
+  text-align: center;
+}
+
+.parameters, .simulate, .output {
+  margin: auto;
+  width: 50%;
+  border: 1px solid black;
+  min-width: 960px;
+  padding: 0px 10px 10px 10px;
+}
+
+body>div {
+  text-align: center;
+}
+
+div.parameters, div.output {
+  background-color: #f0f0f0;
+}
+
+div.heading, div.simulate {
+  background-color: #ffe6e6;
+}
