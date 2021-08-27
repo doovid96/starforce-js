@@ -17,26 +17,28 @@ function getTextarea(classname) {
 
 function simulate() {
   const level = getSelection("level-select");
-  const start = getSelection("start-select")
-  const goal = getSelection("goal-select")
+  const start = getSelection("start-select");
+  const goal = getSelection("goal-select");
   const starcatchArray = getCheckedArray("starcatch-input");
   const safeguardArray = getCheckedArray("safeguard-input");
   const sunnySundayArray = getCheckedArray("sunny-sunday-input");
   const [baseCost, adjustedCost] = calculateCost(level, safeguardArray, sunnySundayArray);
   const rates = calculateRates(starcatchArray, safeguardArray, sunnySundayArray);
+  const textarea = getTextarea("text");
   const [mesos, chanceTimes, booms, steps, sequence] = run(start, goal, baseCost, adjustedCost, rates);
   const output = [
     `Mesos: ${mesos.toLocaleString()}`,
     `Destroyed Equips: ${booms}`,
     `Chance Times: ${chanceTimes}`,
-    `Enhancements: ${steps}`
-  ];
-  textarea = getTextarea("text");
-  if (goal < 23) {
-    textarea.innerHTML = output.join("\n") + "\n" + sequence.join(" ");
+    `Enhancements: ${steps}`];
+  if (start >= goal) {
+    textarea.innerHTML = "Initial starforce level meets the goal starforce level.";
+  }
+  else if (goal < 23) {
+    textarea.innerHTML = `${output.join("\n")}\n${sequence.join(" ")}`;
   }
   else {
-    textarea.innerHTML = output.join("\n") + "\n" + "Last 10,000:\n" + sequence.slice(-10000).join(" ");
+    textarea.innerHTML = `${output.join("\n")}\nLast ${Math.min(10000,sequence.length)}:\n${sequence.slice(-10000).join(" ")}`;
   }
   console.log(output.join("\n"));
 }

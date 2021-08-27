@@ -62,8 +62,7 @@ function calculateRates(starcatchArray, safeguardArray, sunnySundayArray) {
     [0.300, 0.000, 0.630],
     [0.030, 0.000, 0.776],
     [0.020, 0.000, 0.686],
-    [0.010, 0.000, 0.594]
-  ];
+    [0.010, 0.000, 0.594]];
   starcatchArray.forEach((value, i) => {
     if (value) {
       let old = array[i][0];
