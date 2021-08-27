@@ -23,7 +23,7 @@ function simulate() {
   const safeguardArray = getCheckedArray("safeguard-input");
   const sunnySundayArray = getCheckedArray("sunny-sunday-input");
   const [baseCost, adjustedCost] = calculateCost(level, safeguardArray, sunnySundayArray);
-  const rates = calculateRates(safeguardArray, sunnySundayArray);
+  const rates = calculateRates(starcatchArray, safeguardArray, sunnySundayArray);
   const [mesos, chanceTimes, booms, steps, sequence] = run(start, goal, baseCost, adjustedCost, rates);
   const output = [
     `Mesos: ${mesos.toLocaleString()}`,
@@ -32,6 +32,11 @@ function simulate() {
     `Enhancements: ${steps}`
   ];
   textarea = getTextarea("text");
-  textarea.innerHTML = output.join("\n") + "\n" + sequence.join(" ");
+  if (goal < 23) {
+    textarea.innerHTML = output.join("\n") + "\n" + sequence.join(" ");
+  }
+  else {
+    textarea.innerHTML = output.join("\n") + "\n" + "Last 10,000:\n" + sequence.slice(-10000).join(" ");
+  }
   console.log(output.join("\n"));
 }
