@@ -89,6 +89,7 @@ function run(start, goal, baseCost, adjustedCost, rates) {
   let [mesos, chanceTimes, booms, steps] = [0, 0, 0, 0];
   let downFlag = false;
   let star = start;
+  let sequence = [start];
   while (star < goal) {
     ++steps;
     const roll = Math.random();
@@ -106,6 +107,7 @@ function run(start, goal, baseCost, adjustedCost, rates) {
         ++steps;
         ++chanceTimes;
         downFlag = false;
+        sequence.push(star-1);
       }
       else {
         downFlag = true;
@@ -117,8 +119,9 @@ function run(start, goal, baseCost, adjustedCost, rates) {
       ++booms;
       star = 12;
     }
+    sequence.push(star);
   }
-  return [mesos, chanceTimes, booms, steps];
+  return [mesos, chanceTimes, booms, steps, sequence];
 }
 
 function simulate() {
@@ -130,7 +133,7 @@ function simulate() {
   const sunnySundayArray = getCheckedArray("sunny-sunday-input");
   const [baseCost, adjustedCost] = calculateCost(level, safeguardArray, sunnySundayArray);
   const rates = calculateRates(sunnySundayArray[0]);
-  const [mesos, chanceTimes, booms, steps] = run(start, goal, baseCost, adjustedCost, rates);
+  const [mesos, chanceTimes, booms, steps, sequence] = run(start, goal, baseCost, adjustedCost, rates);
   const output = [
     `Mesos: ${mesos.toLocaleString()}`,
     `Chance Times: ${chanceTimes}`,
@@ -138,6 +141,6 @@ function simulate() {
     `Enhancements: ${steps}`
   ];
   textarea = getTextarea("text");
-  textarea.innerHTML = output.join("\n");
+  textarea.innerHTML = output.join("\n") + "\n" + sequence.join(" ");
   console.log(output.join("\n"));
 }
