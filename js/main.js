@@ -48,7 +48,8 @@ function calculateCost(level, safeguardArray, sunnySundayArray) {
   return [base, adjusted];
 }
 
-function calculateRates(passEvent) {
+function calculateRates(safeguardArray, sunnySundayArray) {
+  const [passEvent, discountEvent] = sunnySundayArray;
   array = [
     [0.950, 0.050, 0.000],
     [0.900, 0.100, 0.000],
@@ -81,6 +82,16 @@ function calculateRates(passEvent) {
       array[5][0] = 1.0;
       array[10][0] = 1.0;
       array[15][0] = 1.0;
+    }
+    for (let i = 0, length = safeguardArray.length; i < length; ++i) {
+      if (safeguardArray[i]) {
+        array[i+12][2] = 1.0;
+      }
+    }
+    if (discountEvent) {
+      array[5][2] = 1.0;
+      array[10][2] = 1.0;
+      array[15][2] = 1.0;
     }
     return array;
 }
@@ -132,7 +143,11 @@ function simulate() {
   const safeguardArray = getCheckedArray("safeguard-input");
   const sunnySundayArray = getCheckedArray("sunny-sunday-input");
   const [baseCost, adjustedCost] = calculateCost(level, safeguardArray, sunnySundayArray);
-  const rates = calculateRates(sunnySundayArray[0]);
+  const rates = calculateRates(safeguardArray, sunnySundayArray);
+  rates.forEach((item, i) => {
+    console.log(`i=${i} --- ${item[2]}`)
+  });
+
   const [mesos, chanceTimes, booms, steps, sequence] = run(start, goal, baseCost, adjustedCost, rates);
   const output = [
     `Mesos: ${mesos.toLocaleString()}`,
