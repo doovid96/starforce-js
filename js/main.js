@@ -28,7 +28,7 @@ function costArray(level) {
 function calculateCost(level, safeguardArray, sunnySundayArray) {
   const base = costArray(level);
   let adjusted = [...base];
-  for (let i = 0; i < safeguardArray.length; ++i) {
+  for (let i = 0, length = safeguardArray.length; i < length; ++i) {
     if (safeguardArray[i]) {
       adjusted[i+12] *= 2;
     }
@@ -40,7 +40,7 @@ function calculateCost(level, safeguardArray, sunnySundayArray) {
     adjusted[15] = base[15];
   }
   if (discountEvent) {
-    for (let star = 0; star < base.length; ++star) {
+    for (let star = 0, length = base.length; star < length; ++star) {
       adjusted[star] -= 0.3*base[star];
     }
   }
