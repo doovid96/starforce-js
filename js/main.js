@@ -28,9 +28,9 @@ function simulate() {
   const [mesos, chanceTimes, booms, steps, sequence] = run(start, goal, baseCost, adjustedCost, rates);
   const output = [
     `Mesos: ${mesos.toLocaleString()}`,
-    `Destroyed Equips: ${booms}`,
-    `Chance Times: ${chanceTimes}`,
-    `Enhancements: ${steps}`];
+    `Destroyed Equips: ${booms.toLocaleString()}`,
+    `Chance Times: ${chanceTimes.toLocaleString()}`,
+    `Enhancements: ${steps.toLocaleString()}`];
   if (start >= goal) {
     textarea.innerHTML = "Initial starforce level meets the goal starforce level.";
   }
