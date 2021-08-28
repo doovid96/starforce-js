@@ -25,7 +25,7 @@ function simulate() {
   const [baseCost, adjustedCost] = calculateCost(level, safeguardArray, sunnySundayArray);
   const rates = calculateRates(starcatchArray, safeguardArray, sunnySundayArray);
   const textarea = getTextarea("text");
-  const [mesos, chanceTimes, booms, steps, sequence] = run(start, goal, baseCost, adjustedCost, rates);
+  const [mesos, booms, chanceTimes, steps, sequence] = run(start, goal, baseCost, adjustedCost, rates);
   const output = [
     `Mesos: ${mesos.toLocaleString()}`,
     `Destroyed Equips: ${booms.toLocaleString()}`,

@@ -121,5 +121,5 @@ function run(start, goal, baseCost, adjustedCost, rates) {
     }
     sequence.push(star);
   }
-  return [mesos, chanceTimes, booms, steps, sequence];
+  return [mesos, booms, chanceTimes, steps, sequence];
 }
