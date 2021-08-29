@@ -27,11 +27,11 @@ function calculateCost(level, safeguardArray, sunnySundayArray) {
     adjusted[15] = base[15];
   }
   if (discountEvent) {
-    for (let star = 0, length = base.length; star < length; ++star) {
-      adjusted[star] -= 0.3*base[star];
-    }
+    base.forEach((b, star) => {
+      adjusted[star] -= 0.3*b;
+    });
+    adjusted = adjusted.map(meso => Math.round(meso/100)*100);
   }
-  adjusted = adjusted.map(meso => Math.round(meso/100)*100);
   return [base, adjusted];
 }
 
