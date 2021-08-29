@@ -1,15 +1,18 @@
+function roundNearest(arr, n) {
+  return arr.map(x => Math.round(x/n)*n);
+}
+
 function costArray(level) {
   let f = function(level, star, exp, divisor) {
     return 1000 + Math.pow(level,3)*Math.pow(star,exp)/divisor;
   }
   let array = [];
-  for (star=0; star < 10; ++star) { array.push(f(level, star + 1, 1.0, 25)); }
-  for (star=10; star < 15; ++star) { array.push(f(level, star + 1, 2.7, 400)); }
-  for (star=15; star < 18; ++star) { array.push(f(level, star + 1, 2.7, 120)); }
-  for (star=18; star < 20; ++star) { array.push(f(level, star + 1, 2.7, 110)); }
-  for (star=20; star < 25; ++star) { array.push(f(level, star + 1, 2.7, 100)); }
-  array = array.map(meso => Math.round(meso/100)*100);
-  return array;
+  for (let star=0; star < 10; ++star) { array.push(f(level, star + 1, 1.0, 25)); }
+  for (let star=10; star < 15; ++star) { array.push(f(level, star + 1, 2.7, 400)); }
+  for (let star=15; star < 18; ++star) { array.push(f(level, star + 1, 2.7, 120)); }
+  for (let star=18; star < 20; ++star) { array.push(f(level, star + 1, 2.7, 110)); }
+  for (let star=20; star < 25; ++star) { array.push(f(level, star + 1, 2.7, 100)); }
+  return roundNearest(array, 100);
 }
 
 function calculateCost(level, safeguardArray, sunnySundayArray) {
@@ -30,7 +33,7 @@ function calculateCost(level, safeguardArray, sunnySundayArray) {
     base.forEach((b, star) => {
       adjusted[star] -= 0.3*b;
     });
-    adjusted = adjusted.map(meso => Math.round(meso/100)*100);
+    adjusted = roundNearest(adjusted, 100);
   }
   return [base, adjusted];
 }
