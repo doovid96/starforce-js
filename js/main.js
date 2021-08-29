@@ -11,15 +11,16 @@ function getTextarea(classname) {
 }
 
 function output(start, goal, results, sequence) {
-  const sequenceLimit = 10000;
+  const limit = 10000;
+  const delim = " ";
   if (start >= goal) {
     return "Initial starforce level meets the goal starforce level.";
   }
   else if (goal < 23) {
-    return `${results.join("\n")}\n${sequence.join(" ")}`;
+    return `${results.join("\n")}\n${sequence.join(delim)}`;
   }
   else {
-    return `${results.join("\n")}\nLast ${Math.min(sequenceLimit,sequence.length)}:\n${sequence.slice(-1*sequenceLimit).join(" ")}`;
+    return `${results.join("\n")}\nLast ${Math.min(limit,sequence.length)} ...\n${sequence.slice(-1*limit).join(delim)}`;
   }
 }
 
