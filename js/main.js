@@ -10,8 +10,7 @@ function getTextarea(classname) {
   return document.getElementsByClassName(classname)[0];
 }
 
-function output(start, goal, results, sequence) {
-  const limit = 10000;
+function output(start, goal, results, sequence, limit = 10000) {
   const delim = " ";
   if (start >= goal) {
     return "Initial starforce level meets the goal starforce level.";
