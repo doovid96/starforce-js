@@ -1,6 +1,7 @@
 .heading {
   width: 50%;
-  min-width: 960px;
+  min-width: 720px;
+  max-width: 1080px;
   margin: auto;
   text-align: center;
 }
@@ -8,8 +9,9 @@
 .parameters, .simulate, .output {
   margin: auto;
   width: 50%;
+  min-width: 720px;
+  max-width: 1080px;
   border: 1px solid black;
-  min-width: 960px;
   padding: 0px 10px 10px 10px;
 }
 
@@ -23,4 +25,8 @@ div.parameters, div.output {
 
 div.heading, div.simulate {
   background-color: #ffe6e6;
+}
+
+textarea {
+  padding: 10px 10px 10px 10px;
 }
