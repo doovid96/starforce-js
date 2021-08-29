@@ -30,3 +30,27 @@ div.heading, div.simulate {
 textarea {
   padding: 10px 10px 10px 10px;
 }
+
+button {
+  height: auto;
+  width: auto;
+}
+
+.button-big {
+  font-size: 14px;
+  padding: 4px 4px 4px 4px;
+}
+
+.button-medium {
+  font-size: 12px;
+  padding: 3px 3px 3px 3px;
+}
+
+.button-small {
+  font-size: 10px;
+  padding: 2px 2px 2px 2px;
+}
+
+.start {
+  background-color: green;
+}

@@ -88,7 +88,7 @@ function calculateRates(starcatchArray, safeguardArray, sunnySundayArray) {
   return rates;
 }
 
-function run(start, goal, baseCost, adjustedCost, rates) {
+function starforce(start, goal, baseCost, adjustedCost, rates) {
   let [mesos, chanceTimes, booms, steps] = [0, 0, 0, 0];
   let downFlag = false;
   let star = start;

@@ -6,8 +6,12 @@ function getCheckedArray(className) {
   return Array.from(document.getElementsByClassName(className)).map(box => box.checked);
 }
 
-function getTextarea(classname) {
-  return document.getElementsByClassName(classname)[0];
+function getTextarea() {
+  return document.getElementsByClassName("text")[0];
+}
+
+function getButton() {
+  return document.getElementsByClassName("start")[0];
 }
 
 function output(start, goal, results, sequence, limit = 10000) {
@@ -23,7 +27,7 @@ function output(start, goal, results, sequence, limit = 10000) {
   }
 }
 
-function simulate() {
+function run() {
   const level = getSelection("level-select");
   const start = getSelection("start-select");
   const goal = getSelection("goal-select");
@@ -32,8 +36,8 @@ function simulate() {
   const sunnySundayArray = getCheckedArray("sunny-sunday-input");
   const [baseCost, adjustedCost] = calculateCost(level, safeguardArray, sunnySundayArray);
   const rates = calculateRates(starcatchArray, safeguardArray, sunnySundayArray);
-  const textarea = getTextarea("text");
-  const [mesos, booms, chanceTimes, steps, sequence] = run(start, goal, baseCost, adjustedCost, rates);
+  const textarea = getTextarea();
+  const [mesos, booms, chanceTimes, steps, sequence] = starforce(start, goal, baseCost, adjustedCost, rates);
   const results = [
     `Mesos: ${mesos.toLocaleString()}`,
     `Destroyed Equips: ${booms.toLocaleString()}`,
@@ -41,4 +45,8 @@ function simulate() {
     `Enhancements: ${steps.toLocaleString()}`];
   textarea.innerHTML = output(start, goal, results, sequence);
   console.log(results.join("\n"));
+}
+
+function simulate() {
+  run();
 }
