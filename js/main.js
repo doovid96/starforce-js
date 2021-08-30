@@ -18,7 +18,7 @@ function getButton() {
   return document.getElementsByClassName("start")[0];
 }
 
-function output(start, goal, results, sequence, limit = 10000) {
+function formatOutput(start, goal, results, sequence, limit = 10000) {
   const delim = " ";
   if (start >= goal) {
     return "Initial starforce level meets the goal starforce level.";
@@ -31,32 +31,31 @@ function output(start, goal, results, sequence, limit = 10000) {
   }
 }
 
-function printArray(array) {
-  array.forEach((e, i) => {
-    console.log(`${i} --- ${e}`)
-  });
+function run(level, start, goal, starcatchArray, safeguardArray, sunnySundayArray) {
+  const [defaultCost, baseCost] = calculateCost(level, safeguardArray, sunnySundayArray);
+  const rates = calculateRates(starcatchArray, safeguardArray, sunnySundayArray);
+  return starforce(start, goal, defaultCost, baseCost, rates);
 }
 
-function run() {
+function action() {
   const level = getSelection("level-select");
   const start = getSelection("start-select");
   const goal = getSelection("goal-select");
+  const max = maxStars(level);
+  if (start > max || goal > max) {
+    textarea.innerHTML = `The maximum star force for level ${level} equipment is ${maxStars(level)}.`;
+    return;
+  }
   const starcatchArray = getCheckedArray("starcatch-input");
   const safeguardArray = getCheckedArray("safeguard-input");
   const sunnySundayArray = getCheckedArray("sunny-sunday-input");
-  const [baseCost, adjustedCost] = calculateCost(level, safeguardArray, sunnySundayArray);
-  const rates = calculateRates(starcatchArray, safeguardArray, sunnySundayArray);
   const textarea = getTextarea();
-  const [mesos, booms, chanceTimes, steps, sequence] = starforce(start, goal, baseCost, adjustedCost, rates);
+  const [mesos, booms, chanceTimes, steps, sequence] = run(level, start, goal, starcatchArray, safeguardArray, sunnySundayArray);
   const results = [
     `Mesos: ${mesos.toLocaleString()}`,
     `Destroyed Equips: ${booms.toLocaleString()}`,
     `Chance Times: ${chanceTimes.toLocaleString()}`,
     `Enhancements: ${steps.toLocaleString()}`];
-  textarea.innerHTML = output(start, goal, results, sequence);
+  textarea.innerHTML = formatOutput(start, goal, results, sequence);
   console.log(results.join("\n"));
-}
-
-function simulate() {
-  run();
 }

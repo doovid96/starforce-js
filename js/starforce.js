@@ -2,6 +2,15 @@ function roundNearest(arr, n) {
   return arr.map(x => Math.round(x/n)*n);
 }
 
+function maxStars(level) {
+  if (level < 95) { return 5; }
+  if (level < 108) { return 8; }
+  if (level < 118) { return 10; }
+  if (level < 128) { return 15; }
+  if (level < 138) { return 20; }
+  return 25;
+}
+
 function costArray(level) {
   let f = function(level, star, exp, divisor) {
     return 1000 + Math.pow(level,3)*Math.pow(star,exp)/divisor;
@@ -16,26 +25,28 @@ function costArray(level) {
 }
 
 function calculateCost(level, safeguardArray, sunnySundayArray) {
-  const base = costArray(level);
-  let adjusted = [...base];
-  safeguardArray.forEach((value, i) => {
-    if(value) {
-      adjusted[i] *= 2;
+  const [passEvent, discountEvent] = sunnySundayArray;
+  let baseCost = costArray(level);
+  let defaultCost = [...baseCost];
+  safeguardArray.forEach((safeguarding, star) => {
+    if (safeguarding) {
+      defaultCost[star] *= 2;
     }
   });
-  const [passEvent, discountEvent] = sunnySundayArray;
-  if (passEvent) {
-    adjusted[0] = base[0];
-    adjusted[10] = base[10];
-    adjusted[15] = base[15];
-  }
   if (discountEvent) {
-    base.forEach((b, star) => {
-      adjusted[star] -= 0.3*b;
+    defaultCost.forEach((cost, star, defaultCost) => {
+      defaultCost[star] -= 0.30*baseCost[star];
     });
-    adjusted = roundNearest(adjusted, 100);
+    baseCost.forEach((cost, star, baseCost) => {
+      baseCost[star] *= 0.70;
+    });
   }
-  return [base, adjusted];
+  if (passEvent) {
+    defaultCost[15] = baseCost[15];
+  }
+  return [
+    roundNearest(defaultCost, 100),
+    roundNearest(baseCost, 100)];
 }
 
 function calculateRates(starcatchArray, safeguardArray, sunnySundayArray) {
@@ -88,7 +99,7 @@ function calculateRates(starcatchArray, safeguardArray, sunnySundayArray) {
   return rates;
 }
 
-function starforce(start, goal, baseCost, adjustedCost, rates) {
+function starforce(start, goal, defaultCost, baseCost, rates) {
   let [mesos, chanceTimes, booms, steps] = [0, 0, 0, 0];
   let downFlag = false;
   let star = start;
@@ -96,7 +107,7 @@ function starforce(start, goal, baseCost, adjustedCost, rates) {
   while (star < goal) {
     ++steps;
     const roll = Math.random();
-    mesos += adjustedCost[star];
+    mesos += defaultCost[star];
     if (roll <= rates[star][0]) {
       downFlag = false;
       ++star;
