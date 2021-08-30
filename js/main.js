@@ -37,13 +37,17 @@ function run(level, start, goal, starcatchArray, safeguardArray, sunnySundayArra
   return starforce(start, goal, defaultCost, baseCost, rates);
 }
 
+function badInput(level, start, goal) {
+  const max = maxStars(level);
+  return (start > max || goal > max);
+}
+
 function action() {
   const level = getSelection("level-select");
   const start = getSelection("start-select");
   const goal = getSelection("goal-select");
-  const max = maxStars(level);
   const textarea = getTextarea();
-  if (start > max || goal > max) {
+  if (badInput(level, start, goal)) {
     textarea.innerHTML = `The maximum star force for level ${level} equipment is ${maxStars(level)}.`;
     return;
   }
