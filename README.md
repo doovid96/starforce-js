@@ -1,5 +1,6 @@
 # starforce-js
 Simulates the starforce function in the game MapleStory.
+
 Hosted on github.io [here](https://davidhariprashad.github.io/starforce-js/).
 
 Inputs:
