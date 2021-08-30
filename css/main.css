@@ -1,34 +1,47 @@
 .heading {
-  width: 50%;
-  min-width: 720px;
-  max-width: 1080px;
+  min-width: 480px;
+  max-width: 720px;
   margin: auto;
   text-align: center;
+  background-color: #ffe6e6;
 }
 
-.parameters, .simulate, .output {
-  margin: auto;
-  width: 50%;
-  min-width: 720px;
-  max-width: 1080px;
+.section {
+  margin: 20px auto 20px auto;
+  min-width: 50%;
+  min-width: 480px;
+  max-width: 720px;
+  padding: 25px;
+}
+
+.boxed {
   border: 1px solid black;
-  padding: 0px 10px 10px 10px;
 }
 
-body>div {
-  text-align: center;
+.float-child {
+  min-width: 50%
+  float: left;
+  padding: 20px;
+  display: inline-block;
+}
+
+select.dropdown-small {
+  width: 50px;
 }
 
 div.parameters, div.output {
   background-color: #f0f0f0;
 }
 
-div.heading, div.simulate {
+div.begin {
   background-color: #ffe6e6;
+  text-align: center;
 }
 
 textarea {
-  padding: 10px 10px 10px 10px;
+  padding: 20px;
+  width: 95%;
+  margin: auto;
 }
 
 button {
@@ -37,7 +50,7 @@ button {
 }
 
 .button-big {
-  font-size: 14px;
+  font-size: 24px;
   padding: 4px 4px 4px 4px;
 }
 
@@ -53,8 +66,8 @@ button {
 
 .start {background-color: #00ff00;}
 
+.mvp-option.none {background-color: azure;}
 .mvp-option.silver {background-color: silver;}
 .mvp-option.gold {background-color: gold;}
-.mvp-option.diamond {background-color: lightsteelblue;}
+.mvp-option.diamond {background-color: lavender;}
 .mvp-option.red {background-color: indianred;}
-select {padding: 1px 1px 1px 1px;}
