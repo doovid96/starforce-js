@@ -3,7 +3,11 @@ function getSelection(className) {
 }
 
 function getCheckedArray(className) {
-  return Array.from(document.getElementsByClassName(className)).map(box => box.checked);
+  array = [];
+  Array.from(document.getElementsByClassName(className)).forEach((box) => {
+    array[box.value] = box.checked;
+  });
+  return array;
 }
 
 function getTextarea() {
@@ -25,6 +29,12 @@ function output(start, goal, results, sequence, limit = 10000) {
   else {
     return `${results.join("\n")}\nLast ${Math.min(limit,sequence.length)} ...\n${sequence.slice(-1*limit).join(delim)}`;
   }
+}
+
+function printArray(array) {
+  array.forEach((e, i) => {
+    console.log(`${i} --- ${e}`)
+  });
 }
 
 function run() {
