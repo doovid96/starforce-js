@@ -31,10 +31,14 @@ function formatOutput(start, goal, results, sequence, limit = 10000) {
   }
 }
 
-function run(level, start, goal, starcatchArray, safeguardArray, sunnySundayArray) {
-  const [defaultCost, baseCost] = calculateCost(level, safeguardArray, sunnySundayArray);
+function run(level, start, goal, starcatchArray, safeguardArray, sunnySundayArray, mvpDiscountPercent) {
+  const [defaultCost, nonDefaultCost] = calculateCost(level, safeguardArray, sunnySundayArray, mvpDiscountPercent);
+  console.clear();
+  for (let i=0; i<25; ++i) {
+    console.log(`${i} --- ${defaultCost[i]} --- ${nonDefaultCost[i]}`)
+  }
   const rates = calculateRates(starcatchArray, safeguardArray, sunnySundayArray);
-  return starforce(start, goal, defaultCost, baseCost, rates);
+  return starforce(start, goal, defaultCost, nonDefaultCost, rates);
 }
 
 function badInput(level, start, goal) {
@@ -54,7 +58,8 @@ function action() {
   const starcatchArray = getCheckedArray("starcatch-input");
   const safeguardArray = getCheckedArray("safeguard-input");
   const sunnySundayArray = getCheckedArray("sunny-sunday-input");
-  const [mesos, booms, chanceTimes, steps, sequence] = run(level, start, goal, starcatchArray, safeguardArray, sunnySundayArray);
+  const mvpDiscountPercent = getSelection("mvp-select");
+  const [mesos, booms, chanceTimes, steps, sequence] = run(level, start, goal, starcatchArray, safeguardArray, sunnySundayArray, mvpDiscountPercent);
   const results = [
     `Mesos: ${mesos.toLocaleString()}`,
     `Destroyed Equips: ${booms.toLocaleString()}`,

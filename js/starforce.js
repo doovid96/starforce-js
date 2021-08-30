@@ -24,9 +24,10 @@ function costArray(level) {
   return roundNearest(array, 100);
 }
 
-function calculateCost(level, safeguardArray, sunnySundayArray) {
+function calculateCost(level, safeguardArray, sunnySundayArray, mvpDiscountPercent) {
   const [passEvent, discountEvent] = sunnySundayArray;
-  let baseCost = costArray(level);
+  const baseCost = costArray(level);
+  let nonDefaultCost = [...baseCost];
   let defaultCost = [...baseCost];
   safeguardArray.forEach((safeguarding, star) => {
     if (safeguarding) {
@@ -35,18 +36,24 @@ function calculateCost(level, safeguardArray, sunnySundayArray) {
   });
   if (discountEvent) {
     defaultCost.forEach((cost, star, defaultCost) => {
-      defaultCost[star] -= 0.30*baseCost[star];
+      defaultCost[star] -= 0.3*baseCost[star];
     });
-    baseCost.forEach((cost, star, baseCost) => {
-      baseCost[star] *= 0.70;
+    nonDefaultCost.forEach((cost, star, nonDefaultCost) => {
+      nonDefaultCost[star] -= 0.3*baseCost[star];
     });
+  }
+  defaultCost = roundNearest(defaultCost, 100);
+  nonDefaultCost = roundNearest(nonDefaultCost, 100);
+  if (mvpDiscountPercent > 0) {
+    for (let star = 0; star < 15; ++star) {
+      defaultCost[star] -= mvpDiscountPercent/100.0*baseCost[star];
+      nonDefaultCost[star] -= mvpDiscountPercent/100.0*baseCost[star];
+    }
   }
   if (passEvent) {
-    defaultCost[15] = baseCost[15];
+    defaultCost[15] = nonDefaultCost[15];
   }
-  return [
-    roundNearest(defaultCost, 100),
-    roundNearest(baseCost, 100)];
+  return [defaultCost, nonDefaultCost];
 }
 
 function calculateRates(starcatchArray, safeguardArray, sunnySundayArray) {

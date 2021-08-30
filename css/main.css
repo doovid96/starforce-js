@@ -51,6 +51,10 @@ button {
   padding: 2px 2px 2px 2px;
 }
 
-.start {
-  background-color: #00ff00;
-}
+.start {background-color: #00ff00;}
+
+.mvp-option.silver {background-color: silver;}
+.mvp-option.gold {background-color: gold;}
+.mvp-option.diamond {background-color: lightsteelblue;}
+.mvp-option.red {background-color: indianred;}
+select {padding: 1px 1px 1px 1px;}
