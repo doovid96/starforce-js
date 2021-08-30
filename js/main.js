@@ -42,6 +42,7 @@ function action() {
   const start = getSelection("start-select");
   const goal = getSelection("goal-select");
   const max = maxStars(level);
+  const textarea = getTextarea();
   if (start > max || goal > max) {
     textarea.innerHTML = `The maximum star force for level ${level} equipment is ${maxStars(level)}.`;
     return;
@@ -49,7 +50,6 @@ function action() {
   const starcatchArray = getCheckedArray("starcatch-input");
   const safeguardArray = getCheckedArray("safeguard-input");
   const sunnySundayArray = getCheckedArray("sunny-sunday-input");
-  const textarea = getTextarea();
   const [mesos, booms, chanceTimes, steps, sequence] = run(level, start, goal, starcatchArray, safeguardArray, sunnySundayArray);
   const results = [
     `Mesos: ${mesos.toLocaleString()}`,
