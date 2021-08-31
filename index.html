@@ -12,8 +12,9 @@
       <h1>JavaScript Starforce Simulator</h1>
     </div>
     <div class="parameters section boxed float-container">
-      <div class="float-child">
-        <div class="">
+
+      <div class="float left">
+        <div class="dropdown-line">
           <select class="level-select dropdown-small" name="level">
             <option value="100">100</option>
             <option value="110">110</option>
@@ -27,8 +28,7 @@
           </select>
           Equipment Level
         </div> <!-- equipment level div  -->
-        <br>
-        <div class="">
+        <div class="dropdown-line">
           <select class="start-select dropdown-small" name="start">
             <option value="0">0</option>
             <option value="1">1</option>
@@ -58,8 +58,7 @@
           </select>
           Initial Starforce Level
         </div> <!-- initial starforce div -->
-        <br>
-        <div class="">
+        <div class="dropdown-line">
           <select class="goal-select dropdown-small" name="goal">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -89,7 +88,6 @@
           </select>
           Goal Starforce Level
         </div> <!-- goal starforce div -->
-        <br>
         <div class="mvp-div">
           <select class="mvp-select" name="mvp-select">
             <option class="mvp-option none" value="0" selected>N/A (0%)</option>
@@ -100,16 +98,16 @@
           </select>
           MVP Special Discount
         </div>
-        <br>
-        <div class="sunny-sunday">
+        <div class="sunny-sunday-div">
           Sunny Sunday:<br>
           <input type="checkbox" class="sunny-sunday-input" name="sunny-sunday" value="0">5-10-15<br>
           <input type="checkbox" class="sunny-sunday-input" name="sunny-Sunday" value="1">30% off
         </div> <!-- sunny sunday div -->
       </div> <!-- left float -->
-      <div class="float-child">
+
+      <div class="float right">
         <div class="safeguard">
-          Safeguard:<br>
+          Safeguard<br>
           <input type="checkbox" class="safeguard-input" name="safeguard" value="12" checked>12&emsp;
           <input type="checkbox" class="safeguard-input" name="safeguard" value="13" checked>13&emsp;
           <input type="checkbox" class="safeguard-input" name="safeguard" value="14" checked>14&emsp;
@@ -118,7 +116,7 @@
         </div> <!-- safeguard div -->
         <br>
         <div class="starcatch">
-          Starcatch:<br>
+          Star Catch<br>
           <form class="">
             <input type="checkbox" class="starcatch-input" name="starcatch" value="0" checked>0&ensp;&emsp;
             <input type="checkbox" class="starcatch-input" name="starcatch" value="1" checked>1&ensp;&emsp;
@@ -148,12 +146,15 @@
           </form>
         </div> <!-- starcatch div -->
       </div> <!-- right float -->
+
     </div> <!-- parameters div -->
-    <div class="begin section boxed">
+
+    <div class="begin">
       <button class="button-big start" type="button" onclick="action()">Start</button>
     </div>
+
     <div class="output section boxed">
-      <textarea class="text" name="output" rows="16" placeholder="Output will display here." readonly></textarea>
+      <textarea class="text" name="output" rows="16" placeholder="Simulation output will display here." readonly></textarea>
     </div>
   </body>
 </html>

@@ -17,11 +17,22 @@
   border: 1px solid black;
 }
 
-.float-child {
-  min-width: 50%
+.float {
+  min-width: 50%;
+  margin: 20px;
+}
+
+.float.left {
   float: left;
-  padding: 20px;
-  display: inline-block;
+}
+
+.float.right {
+  margin-left: 50%;
+  min-width: 360px;
+}
+
+select {
+  margin: 5px;
 }
 
 select.dropdown-small {
@@ -33,7 +44,6 @@ div.parameters, div.output {
 }
 
 div.begin {
-  background-color: #ffe6e6;
   text-align: center;
 }
 
@@ -41,11 +51,6 @@ textarea {
   padding: 20px;
   width: 95%;
   margin: auto;
-}
-
-button {
-  height: auto;
-  width: auto;
 }
 
 .button-big {
