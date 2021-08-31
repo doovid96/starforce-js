@@ -33,10 +33,6 @@ function formatOutput(start, goal, results, sequence, limit = 10000) {
 
 function run(level, start, goal, starcatchArray, safeguardArray, sunnySundayArray, mvpDiscountPercent) {
   const [defaultCost, nonDefaultCost] = calculateCost(level, safeguardArray, sunnySundayArray, mvpDiscountPercent);
-  console.clear();
-  for (let i=0; i<25; ++i) {
-    console.log(`${i} --- ${defaultCost[i]} --- ${nonDefaultCost[i]}`)
-  }
   const rates = calculateRates(starcatchArray, safeguardArray, sunnySundayArray);
   return starforce(start, goal, defaultCost, nonDefaultCost, rates);
 }

@@ -48,9 +48,9 @@ div.begin {
 }
 
 textarea {
-  padding: 20px;
+  display: block;
   width: 95%;
-  margin: auto;
+  margin: 20px auto 20px auto;
 }
 
 .button-big {
