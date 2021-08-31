@@ -10,6 +10,7 @@ Inputs:
 * Starcatch (0 to 21)
 * Safeguard (12 to 16)
 * Sunny Sunday
+* MVP Discount
 
 Outputs:
 * Mesos
