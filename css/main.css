@@ -63,20 +63,20 @@ textarea {
 
 .button-big {
   font-size: 24px;
-  padding: 4px 4px 4px 4px;
+  padding: 6px 6px 6px 6px;
 }
 
 .button-medium {
-  font-size: 12px;
-  padding: 3px 3px 3px 3px;
+  font-size: 20px;
+  padding: 5px 5px 5px 5px;
 }
 
 .button-small {
-  font-size: 10px;
-  padding: 2px 2px 2px 2px;
+  font-size: 16px;
+  padding: 4px 4px 4px 4px;
 }
 
-.start {background-color: #00ff00;}
+.start {background-color: #bbffbb;}
 
 .mvp-option.none {background-color: azure;}
 .mvp-option.silver {background-color: silver;}
