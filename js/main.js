@@ -18,12 +18,9 @@ function getButton() {
   return document.getElementsByClassName("start")[0];
 }
 
-function formatOutput(start, goal, results, sequence, limit = 10000) {
+function formatOutput(start, goal, results, sequence, limit = 1000) {
   const delim = " ";
-  if (start >= goal) {
-    return "Initial starforce level meets the goal starforce level.";
-  }
-  else if (goal < 23) {
+  if (goal < 23) {
     return `${results.join("\n")}\n${sequence.join(delim)}`;
   }
   else {

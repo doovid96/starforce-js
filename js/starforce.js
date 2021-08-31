@@ -107,6 +107,7 @@ function calculateRates(starcatchArray, safeguardArray, sunnySundayArray) {
 }
 
 function starforce(start, goal, defaultCost, baseCost, rates) {
+  const sequenceLimit = 1000000;
   let [mesos, chanceTimes, booms, steps] = [0, 0, 0, 0];
   let downFlag = false;
   let star = start;
@@ -140,7 +141,10 @@ function starforce(start, goal, defaultCost, baseCost, rates) {
       ++booms;
       star = 12;
     }
-    sequence.push(star);
+    const len = sequence.push(star);
+    if (len > sequenceLimit) {
+      sequence = sequence.slice(-1000);
+    }
   }
   return [mesos, booms, chanceTimes, steps, sequence];
 }
