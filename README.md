@@ -1,7 +1,7 @@
 # starforce-js
 Simulates the starforce function in the game MapleStory.
 
-Hosted on github.io [here](https://doovid96.github.io.starforce.js/).
+Hosted on github.io [here](https://doovid96.github.io/starforce-js/).
 
 Inputs:
 * Equipment Level
