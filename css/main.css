@@ -23,6 +23,7 @@
 }
 
 .float.left {
+  min-width: 50%;
   float: left;
 }
 
