@@ -103,6 +103,9 @@ function calculateRates(starcatchArray, safeguardArray, sunnySundayArray) {
       rates[star][2] = 1.0;
     }
   });
+  if (rates[15][2] == 1.0) {
+    rates[15][1] = 1.0;
+  }
   return rates;
 }
 
