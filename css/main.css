@@ -1,7 +1,7 @@
 .heading {
   min-width: 480px;
   max-width: 720px;
-  margin: auto;
+  margin: 0 auto;
   text-align: center;
 }
 
