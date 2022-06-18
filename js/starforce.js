@@ -13,8 +13,7 @@ function maxStars(level) {
 
 function costArray(level) {
   const formula = ({ multiplier, level, star, starExponent, divisionScalor, addend }) => {
-    const cost = 100 * Math.round(multiplier * Math.round(Math.pow(level, 3) * Math.pow(star + 1, 2.7) / divisionScalor) + addend);
-    return cost;
+    return 100 * Math.round(multiplier * Math.round(Math.pow(level, 3) * Math.pow(star + 1, 2.7) / divisionScalor) + addend);
   };
   const array = [];
   for (let star = 0; star < 10; ++star) {
