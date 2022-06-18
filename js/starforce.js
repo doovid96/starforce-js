@@ -32,7 +32,8 @@ function costArray(level) {
   for (let star = 20; star < 25; ++star) {
     array.push(formula({ multiplier: 0.78, level, star, starExponent: 2.7, divisionScalor: 10_000, addend: 7.8 }));
   }
-  return roundNearest(array, 100);
+  //return roundNearest(array, 100);
+  return array;
 }
 
 function calculateCost(level, safeguardArray, sunnySundayArray, mvpDiscountPercent) {
