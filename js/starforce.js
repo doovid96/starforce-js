@@ -12,15 +12,26 @@ function maxStars(level) {
 }
 
 function costArray(level) {
-  let f = function(level, star, exp, divisor) {
-    return 1000 + Math.pow(level,3)*Math.pow(star,exp)/divisor;
+  const formula = ({ multiplier, level, star, starExponent, divisionScalor, addend }) => {
+    const cost = 100 * Math.round(multiplier * Math.round(Math.pow(level, 3) * Math.pow(star + 1, 2.7) / divisionScalor) + addend);
+    return cost;
+  };
+  const array = [];
+  for (let star = 0; star < 10; ++star) {
+    array.push(formula({ multiplier: 1.0, level, star, starExponent: 1.0, divisionScalor: 2_500, addend: 10 }));
   }
-  let array = [];
-  for (let star=0; star < 10; ++star) { array.push(f(level, star + 1, 1.0, 25)); }
-  for (let star=10; star < 15; ++star) { array.push(f(level, star + 1, 2.7, 400)); }
-  for (let star=15; star < 18; ++star) { array.push(f(level, star + 1, 2.7, 120)); }
-  for (let star=18; star < 20; ++star) { array.push(f(level, star + 1, 2.7, 110)); }
-  for (let star=20; star < 25; ++star) { array.push(f(level, star + 1, 2.7, 100)); }
+  for (let star = 10; star < 15; ++star) {
+    array.push(formula({ multiplier: 1.0, level, star, starExponent: 2.7, divisionScalor: 40_000, addend: 10 }));
+  }
+  for (let star = 15; star < 18; ++star) {
+    array.push(formula({ multiplier: 0.78, level, star, starExponent: 2.7, divisionScalor: 12_000, addend: 7.8 }));
+  }
+  for (let star = 18; star < 20; ++star) {
+    array.push(formula({ multiplier: 0.78, level, star, starExponent: 2.7, divisionScalor: 11_000, addend: 7.8 }));
+  }
+  for (let star = 20; star < 25; ++star) {
+    array.push(formula({ multiplier: 0.78, level, star, starExponent: 2.7, divisionScalor: 10_000, addend: 7.8 }));
+  }
   return roundNearest(array, 100);
 }
 
