@@ -31,7 +31,6 @@ function costArray(level) {
   for (let star = 20; star < 25; ++star) {
     array.push(formula({ multiplier: 0.78, level, star, starExponent: 2.7, divisionScalor: 10_000, addend: 7.8 }));
   }
-  //return roundNearest(array, 100);
   return array;
 }
 
@@ -95,8 +94,8 @@ function calculateRates(starcatchArray, safeguardArray, sunnySundayArray) {
     [0.030, 0.000, 0.776],
     [0.020, 0.000, 0.686],
     [0.010, 0.000, 0.594]];
-  starcatchArray.forEach((value, star) => {
-    if (value) {
+  starcatchArray.forEach((starcatching, star) => {
+    if (starcatching) {
       let old = rates[star][0];
       rates[star][0] *= 1.045;
       rates[star][1] = (1.0 - rates[star][0]) * (rates[star][1] / (1.0 - old));
@@ -109,8 +108,8 @@ function calculateRates(starcatchArray, safeguardArray, sunnySundayArray) {
     rates[10][0] = 1.0;
     rates[15][0] = 1.0;
   }
-  safeguardArray.forEach((value, star) => {
-    if (value) {
+  safeguardArray.forEach((safeguarding, star) => {
+    if (safeguarding) {
       rates[star][2] = 1.0;
     }
   });
