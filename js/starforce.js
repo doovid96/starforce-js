@@ -47,18 +47,18 @@ function calculateCost(level, safeguardArray, sunnySundayArray, mvpDiscountPerce
   });
   if (discountEvent) {
     defaultCost.forEach((cost, star, defaultCost) => {
-      defaultCost[star] -= 0.3*baseCost[star];
+      defaultCost[star] -= 0.3 * baseCost[star];
     });
     nonDefaultCost.forEach((cost, star, nonDefaultCost) => {
-      nonDefaultCost[star] -= 0.3*baseCost[star];
+      nonDefaultCost[star] -= 0.3 * baseCost[star];
     });
   }
   defaultCost = roundNearest(defaultCost, 100);
   nonDefaultCost = roundNearest(nonDefaultCost, 100);
   if (mvpDiscountPercent > 0) {
     for (let star = 0; star < 15; ++star) {
-      defaultCost[star] -= mvpDiscountPercent/100.0*baseCost[star];
-      nonDefaultCost[star] -= mvpDiscountPercent/100.0*baseCost[star];
+      defaultCost[star] -= mvpDiscountPercent / 100.0 * baseCost[star];
+      nonDefaultCost[star] -= mvpDiscountPercent / 100.0 * baseCost[star];
     }
   }
   if (passEvent) {
@@ -121,7 +121,7 @@ function calculateRates(starcatchArray, safeguardArray, sunnySundayArray) {
 }
 
 function starforce(start, goal, defaultCost, baseCost, rates) {
-  const sequenceLimit = 1000000;
+  const sequenceLimit = 1_000_000;
   let [mesos, chanceTimes, booms, steps] = [0, 0, 0, 0];
   let downFlag = false;
   let star = start;
